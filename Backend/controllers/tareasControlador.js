@@ -1,50 +1,48 @@
-const taskService = require('../services/TaskService');
+const servicioTareas = require('../services/tareasServicio');
 
 // Obtener todas las tareas (GET)
-exports.getTasks = async (req, res) => {
+exports.obtenerTareas = async (req, res) => {
     try {
-        const tasks = await taskService.getAll();
-        res.status(200).json(tasks);
+        const tareas = await servicioTareas.obtenerTodas();
+        res.status(200).json(tareas);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener tareas', error: error.message });
     }
 };
 
 // Crear una nueva tarea (POST)
-exports.createTask = async (req, res) => {
+exports.crearTarea = async (req, res) => {
     try {
-        // Pasamos el cuerpo de la petición al servicio
-        const newTask = await taskService.create(req.body);
-        res.status(201).json(newTask);
+        const nuevaTarea = await servicioTareas.crear(req.body);
+        res.status(201).json(nuevaTarea);
     } catch (error) {
-        // Si falla la validación del esquema de Mongoose, devolvemos 400
         res.status(400).json({ message: 'Error al crear la tarea', error: error.message });
     }
 };
 
 // Actualizar una tarea (PUT)
-exports.updateTask = async (req, res) => {
+exports.actualizarTarea = async (req, res) => {
     try {
         const { id } = req.params;
-        const updatedTask = await taskService.update(id, req.body);
+        const tareaActualizada = await servicioTareas.actualizar(id, req.body);
 
-        if (!updatedTask) {
+        if (!tareaActualizada) {
             return res.status(404).json({ message: 'Tarea no encontrada' });
         }
 
-        res.status(200).json(updatedTask);
+        res.status(200).json(tareaActualizada);
     } catch (error) {
         res.status(400).json({ message: 'Error al actualizar', error: error.message });
     }
 };
 
 // Eliminar una tarea (DELETE)
-exports.deleteTask = async (req, res) => {
+exports.eliminarTarea = async (req, res) => {
     try {
         const { id } = req.params;
-        const deletedTask = await taskService.delete(id);
+        const tareaEliminada = await servicioTareas.eliminar(id);
 
-        if (!deletedTask) {
+        if (!tareaEliminada) {
             return res.status(404).json({ message: 'No se pudo eliminar: Tarea no encontrada' });
         }
 

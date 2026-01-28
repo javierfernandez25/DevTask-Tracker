@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const taskSchema = new mongoose.Schema({
+const esquemaTarea = new mongoose.Schema({
     titulo: {
         type: String,
         required: [true, 'El título es obligatorio'],
@@ -17,13 +17,17 @@ const taskSchema = new mongoose.Schema({
     },
     estado: {
         type: String,
-        enum: ['pending', 'done'],
-        default: 'pending'
+        enum: ['pendiente', 'completada'],
+        default: 'pendiente'
     },
     fecha: {
         type: Date,
         default: Date.now
+    },
+    fechaFin: {
+        type: Date
     }
 });
 
-module.exports = mongoose.model('Task', taskSchema);
+
+module.exports = mongoose.model('Tarea', esquemaTarea);
