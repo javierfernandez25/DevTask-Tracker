@@ -149,11 +149,6 @@ h2 {
     border-left: 4px solid var(--primary);
 }
 
-.backlog-column h2 {
-    border-left: 4px solid var(--text-muted);
-    color: var(--text-muted);
-}
-
 .table-header {
     display: grid;
     grid-template-columns: 2.5fr 1fr 1fr 1.5fr 1fr;
@@ -287,14 +282,6 @@ h2 {
     background: #e2445c;
     color: white;
     border-color: #e2445c;
-}
-
-.backlog-item {
-    opacity: 0.7;
-}
-
-.backlog-item .task-cell:first-child {
-    border-left-color: var(--text-muted);
 }
 
 footer {

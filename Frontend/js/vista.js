@@ -6,8 +6,7 @@ const VistaTareas = {
         inputTecnologia: document.getElementById('tecnologia'),
         inputEstado: document.getElementById('estado'),
         inputFechaFin: document.getElementById('fechaFin'),
-        listaTareas: document.getElementById('lista-tareas'),
-        listaBacklog: document.getElementById('lista-backlog')
+        listaTareas: document.getElementById('lista-tareas')
     },
 
     obtenerDatosFormulario: () => ({
@@ -53,18 +52,4 @@ const VistaTareas = {
             </div>
         `;
     },
-
-    añadirAlBacklog: (titulo, tecnologia, fechaFin) => {
-        const html = `
-            <div class="task-item backlog-item">
-                <div class="task-cell"><span class="task-title-text">${titulo}</span></div>
-                <div class="task-cell"><span class="badge badge-tech">${tecnologia}</span></div>
-                <div class="task-cell"><span class="task-desc">Archivada</span></div>
-                <div class="task-cell"><span class="badge badge-completada">Hecho</span></div>
-                <div class="task-cell"><span class="task-date">${fechaFin ? new Date(fechaFin).toLocaleDateString() : '-'}</span></div>
-            </div>
-        `;
-        VistaTareas.elementos.listaBacklog.insertAdjacentHTML('afterbegin', html);
-    }
 };
-

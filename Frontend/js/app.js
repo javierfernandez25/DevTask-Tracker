@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (confirm(`¿Estás seguro de eliminar la tarea: ${titulo}?`)) {
             const resultado = await ModeloTareas.eliminarTarea(id);
             if (resultado) {
-                VistaTareas.añadirAlBacklog(titulo, tecnologia, fechaFin);
                 await cargarTareas();
             }
         }
